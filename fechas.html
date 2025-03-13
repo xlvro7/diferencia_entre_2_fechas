@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora de Diferencia de Fechas</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            background-color: #f4f4f9;
+            color: #333;
+        }
+        h1 {
+            text-align: center;
+        }
+        .container {
+            width: 300px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        label {
+            font-weight: bold;
+        }
+        input {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+        button {
+            width: 100%;
+            padding: 10px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        .result {
+            text-align: center;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Calculadora de Diferencia de Fechas</h1>
+
+    <div class="container">
+        <label for="fecha1">Fecha 1:</label>
+        <input type="date" id="fecha1">
+
+        <label for="fecha2">Fecha 2:</label>
+        <input type="date" id="fecha2">
+
+        <button onclick="calcularDiferencia()">Calcular Diferencia</button>
+
+        <div class="result" id="resultado"></div>
+    </div>
+
+    <script>
+        function calcularDiferencia() {
+            // Obtener las fechas ingresadas
+            const fecha1 = document.getElementById("fecha1").value;
+            const fecha2 = document.getElementById("fecha2").value;
+
+            // Validar que ambas fechas estén ingresadas
+            if (!fecha1 || !fecha2) {
+                document.getElementById("resultado").innerHTML = "Por favor, ingresa ambas fechas.";
+                return;
+            }
+
+            // Convertir las fechas a objetos Date
+            const fecha1Obj = new Date(fecha1);
+            const fecha2Obj = new Date(fecha2);
+
+            // Calcular la diferencia en milisegundos
+            const diferenciaMs = Math.abs(fecha2Obj - fecha1Obj);
+
+            // Convertir la diferencia a días
+            const diferenciaDias = Math.ceil(diferenciaMs / (1000 * 3600 * 24));
+
+            // Mostrar el resultado
+            document.getElementById("resultado").innerHTML = `La diferencia es de ${diferenciaDias} días.`;
+        }
+    </script>
+
+</body>
+</html>
